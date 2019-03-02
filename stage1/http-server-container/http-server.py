@@ -20,7 +20,7 @@ def register_at_load_balancer():
             return
         requests.get("http://load-balancer/register", params={"http_server_address": http_server_address})
     except Exception as e:
-        logging.exception("Some error in connecting to load balancer", e)
+        logging.exception("Can not connect to load balancer", e)
 
 
 def calculate_factorial(value):

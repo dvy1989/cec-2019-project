@@ -1,0 +1,29 @@
+version: "3"
+services:
+  http-server:
+    image: http-server-container
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: ".05"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
+    networks:
+      - project-stage-2-network
+  redis-server:
+    image: redis-server-container
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "6379:6379"
+    networks:
+      - project-stage-2-network
+    volumes:
+      - "/var/cec:/data"
+networks:
+  project-stage-2-network:
